@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}Submit Complaint{% endblock %}
+{% block content %}<div class="form-card mx-auto wide"><span class="eyebrow">STUDENT PORTAL</span><h2 class="fw-bold mt-2">Submit a complaint</h2><p class="text-muted">Please provide clear details so the college team can help.</p>
+<form method="post">
+  <label class="form-label">Complaint title</label><input class="form-control mb-3" name="title" maxlength="120" placeholder="Example: Projector not working in classroom" required>
+  <label class="form-label">Category</label><select class="form-select mb-3" name="category" required><option value="">Choose a category</option>{% for item in ['Classroom','Laboratory','Hostel','Library','Transport','Canteen','Other'] %}<option>{{ item }}</option>{% endfor %}</select>
+  <label class="form-label">Description</label><textarea class="form-control mb-3" rows="5" name="description" minlength="10" placeholder="Explain the issue..." required></textarea>
+  <button class="btn btn-primary">Submit complaint</button> <a class="btn btn-light" href="{{ url_for('student_dashboard') }}">Cancel</a>
+</form></div>{% endblock %}

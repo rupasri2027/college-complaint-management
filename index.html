@@ -1,0 +1,28 @@
+{% extends "base.html" %}{% block title %}CampusCare | Home{% endblock %}
+{% block content %}
+<section class="hero p-4 p-md-5 rounded-4">
+  <div class="row align-items-center g-4">
+    <div class="col-lg-7">
+      <span class="eyebrow">A better campus starts with being heard</span>
+      <h1 class="display-5 fw-bold mt-3">Your voice can make<br>our campus better.</h1>
+      <p class="lead mt-3">Submit college-related complaints, follow their progress, and stay updated in one simple portal.</p>
+      <div class="d-flex flex-wrap gap-2 mt-4">
+        {% if not session.get('user_id') %}
+          <a class="btn btn-primary btn-lg" href="{{ url_for('register') }}">Get Started</a>
+          <a class="btn btn-outline-primary btn-lg" href="{{ url_for('login') }}">Login</a>
+        {% elif session.get('role') == 'student' %}
+          <a class="btn btn-primary btn-lg" href="{{ url_for('student_dashboard') }}">Open Dashboard</a>
+        {% else %}
+          <a class="btn btn-primary btn-lg" href="{{ url_for('admin_dashboard') }}">Open Admin Dashboard</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-lg-5"><div class="hero-art"><div class="big-icon">✉</div><h4>Report. Track. Improve.</h4><p class="mb-0">A transparent way to manage student feedback.</p></div></div>
+  </div>
+</section>
+<div class="row g-3 mt-3">
+  <div class="col-md-4"><div class="feature-card"><div class="feature-icon">📝</div><h5>Easy submission</h5><p>Submit an issue with its category and details in minutes.</p></div></div>
+  <div class="col-md-4"><div class="feature-card"><div class="feature-icon">🔎</div><h5>Track progress</h5><p>Check whether your complaint is pending, in progress, or resolved.</p></div></div>
+  <div class="col-md-4"><div class="feature-card"><div class="feature-icon">🤝</div><h5>Admin response</h5><p>College administrators can review and respond to complaints.</p></div></div>
+</div>
+{% endblock %}
